@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".IdeaHomeFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_title_createidea"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:paddingHorizontal="@dimen/padding_text_h"
+                android:paddingBottom="@dimen/padding_v"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/tv_string_createidea">
+
+                <ImageView
+                    android:id="@+id/iv_icon_createidea"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_emoji_objects"
+                    android:tint="@color/orange"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_title_createidea"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_title_createidea" />
+
+
+                <TextView
+                    android:id="@+id/tv_title_createidea"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_text_small"
+                    android:layout_marginBottom="@dimen/margin_text_small"
+                    android:text="콘텐츠 소재 발굴하기"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_message_title"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_subtext_createidea"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iv_icon_createidea" />
+
+                <TextView
+                    android:id="@+id/tv_subtext_createidea"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_subtext_createidea"
+                    android:textColor="@color/gray_b"
+                    android:textSize="@dimen/text_size_message_body_small"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/iv_icon_createidea" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_button_create"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="@dimen/padding_box_h"
+                android:layout_marginVertical="@dimen/padding_v"
+                android:background="@drawable/bg_stroke_editable"
+                android:clickable="true"
+                android:elevation="3dp"
+                android:paddingHorizontal="@dimen/padding_text_h"
+                android:paddingVertical="@dimen/padding_v"
+                android:visibility="visible"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_title_createidea">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/add_circle"
+                        android:tint="@color/gray_b"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_text_small"
+                        android:text="콘텐츠 아이디어를\n입력하세요"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray_b"
+                        android:textSize="@dimen/text_size_message_title"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_idea_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                tools:itemCount="10"
+                tools:listitem="@layout/item_idea"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="100dp"
+                app:layout_constraintTop_toBottomOf="@+id/cl_button_create" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".CreateIdeaFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_layout_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_topbar">
+
+        <ImageView
+            android:id="@+id/iv_icon_close"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="@dimen/padding_box_h"
+            android:src="@drawable/icon_close"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/sv_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_layout_topbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tv_string_createidea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/padding_text_h"
+        android:paddingVertical="@dimen/padding_v"
+        android:text="콘텐츠 아이디어를 입력하면\n높은 조회수를 내는 소재인지 확인해드릴게요"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_message_body"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_question_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/padding_text_h"
+        android:paddingVertical="@dimen/padding_v"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/tv_string_createidea">
+
+        <ImageView
+            android:id="@+id/iv_icon_description"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/icon_emoji_objects"
+            android:tint="@color/orange"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tv_qeustion_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_text_small"
+            android:layout_marginTop="2dp"
+            android:text="어떤 콘텐츠를 만들고 싶으신가요?"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_message_body"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_icon_description"
+            app:layout_constraintTop_toTopOf="@+id/iv_icon_description" />
+
+        <ImageView
+            android:id="@+id/iv_icon_subtext_error"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/icon_error"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_qeustion_description"
+            app:tint="@color/gray_b" />
+
+        <TextView
+            android:id="@+id/tv_subtext_error"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_text_small"
+            android:text="@string/tv_subtext_error"
+            android:textColor="@color/gray_b"
+            android:textSize="@dimen/text_size_message_body_small"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_icon_subtext_error"
+            app:layout_constraintStart_toEndOf="@+id/iv_icon_subtext_error"
+            app:layout_constraintTop_toTopOf="@+id/iv_icon_subtext_error" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_answer_description"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginHorizontal="@dimen/padding_box_h"
+        android:layout_marginVertical="@dimen/padding_v"
+        android:background="@drawable/bg_stroke_editable"
+        android:elevation="3dp"
+        android:paddingHorizontal="@dimen/padding_text_h"
+        android:paddingVertical="@dimen/padding_v"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/cl_question_description">
+
+        <EditText
+            android:id="@+id/et_answer_description"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_none"
+            android:gravity="top"
+            android:hint="콘텐츠 아이디어를 입력해주세요"
+            android:maxLength="100"
+            android:imeOptions="actionDone"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tv_button_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0" />
+
+        <TextView
+            android:id="@+id/tv_length_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0/100자"
+            android:textColor="@color/gray_b"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_button_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="-8dp"
+            android:layout_marginBottom="-4dp"
+            android:padding="8dp"
+            android:text="완료"
+            android:textColor="@color/red"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_title_description"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingHorizontal="@dimen/padding_text_h"
+        android:paddingTop="40dp"
+
+        android:text="콘텐츠 아이디어"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/text_size_message_body"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/cl_answer_description" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_check_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_box_h"
+        android:layout_marginVertical="@dimen/padding_v"
+        android:background="@drawable/bg_stroke_editable"
+        android:paddingHorizontal="@dimen/padding_text_h"
+        android:paddingVertical="20dp"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_description">
+
+
+        <TextView
+            android:id="@+id/tv_check_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:maxLength="100"
+            android:text="유저가 입력했던  콘텐츠 아이디어가\n출력됩니다"
+            android:textColor="@color/gray_b"
+            android:textSize="@dimen/text_size_message_body"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_check_keyword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/bg_stroke_keyword"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"
+            android:text="안녕"
+            android:textStyle="bold"
+            android:textColor="@color/gray_b"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_check_description"
+            app:layout_constraintTop_toBottomOf="@+id/tv_check_description" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_question_keyword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_box_h"
+        android:paddingHorizontal="@dimen/padding_text_h"
+        android:paddingVertical="@dimen/padding_v"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/cl_check_description">
+
+        <ImageView
+            android:id="@+id/iv_icon_keyword"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/icon_emoji_objects"
+            android:tint="@color/orange"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tv_qeustion_keyword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_text_small"
+            android:layout_marginTop="2dp"
+            android:text="@string/tv_qeustion_keyword"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_message_body"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_icon_keyword"
+            app:layout_constraintTop_toTopOf="@+id/iv_icon_keyword" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_answer_keyword"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginHorizontal="@dimen/padding_box_h"
+                android:layout_marginVertical="@dimen/padding_v"
+                android:background="@drawable/bg_stroke_editable"
+                android:elevation="3dp"
+                android:paddingHorizontal="@dimen/padding_text_h"
+                android:paddingVertical="@dimen/padding_v"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@+id/cl_question_keyword"
+                tools:layout_editor_absoluteX="14dp">
+
+                <EditText
+                    android:id="@+id/et_answer_keyword"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/bg_none"
+                    android:gravity="top"
+                    android:hint="(예시) 수면음악 빗소리, 키작은 남자 코디"
+                    android:maxLength="15"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_length_keyword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0/15자"
+                    android:textColor="@color/gray_b"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+
+                <CheckBox
+                    android:id="@+id/cb_checkbox_isshorts"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:tint="@color/orange"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_qeustion_isshorts"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_qeustion_isshorts" />
+
+
+                <TextView
+                    android:id="@+id/tv_qeustion_isshorts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shorts 아이디어"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_message_body"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cb_checkbox_isshorts" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tv_button_keyword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:padding="8dp"
+                android:text="분석 신청하기"
+                android:textColor="@color/red"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_answer_keyword" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_button_keyword" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
