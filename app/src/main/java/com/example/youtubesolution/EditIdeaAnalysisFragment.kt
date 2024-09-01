@@ -1,0 +1,90 @@
+package com.example.youtubesolution
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.commit
+import com.example.youtubesolution.databinding.FragmentEditIdeaAnalysisBinding
+import com.example.youtubesolution.dataclass.IdeaViewModel
+import com.example.youtubesolution.dataclass.IsRequested
+
+private const val ARG_ID = "id"
+
+class EditIdeaAnalysisFragment : Fragment() {
+    private val viewModel by activityViewModels<IdeaViewModel>()
+    private val binding by lazy { FragmentEditIdeaAnalysisBinding.inflate(layoutInflater) }
+
+    private var id: String? = null
+    private val idea by lazy { viewModel.getIdeaById(id) }
+    private val ideaAnalysis by lazy { viewModel.getIdeaAnalysisById(id) }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        id = arguments?.getString(ARG_ID)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initView()
+        setupClickListners()
+
+    }
+
+    private fun initView() {
+        val refViewCount =
+            if (ideaAnalysis.refViewCount == 0){
+                ""
+            } else {
+                ideaAnalysis.refViewCount.toString()
+            }
+
+        binding.apply {
+            etYoutubeTitle.setText(ideaAnalysis.refTitle)
+            etYoutubeViewcount.setText(refViewCount)
+            etHowtoClick.setText(ideaAnalysis.howtoClick)
+            etHowtoWatching.setText(ideaAnalysis.howtoWatching)
+        }
+    }
+
+    private fun setupClickListners() {
+        binding.btnComplete.setOnClickListener {
+            val updatedIdeaAnalysis = ideaAnalysis.copy(
+                refTitle = binding.etYoutubeTitle.text.toString(),
+                refViewCount = binding.etYoutubeViewcount.text.toString().toInt(),
+                howtoClick = binding.etHowtoClick.text.toString(),
+                howtoWatching = binding.etHowtoWatching.text.toString()
+            )
+            viewModel.updateIdeaAnalysis(updatedIdeaAnalysis)
+            viewModel.updateIdea(idea.copy(isRequested = IsRequested.COMPLETED))
+
+            parentFragmentManager.commit {
+                replace(R.id.fragment_container_main_activity, IdeaDetailFragment.newInstance(id.toString()))
+                setReorderingAllowed(true)
+                parentFragmentManager.popBackStack()
+            }
+        }
+
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance(id: String) =
+            EditIdeaAnalysisFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_ID, id)
+                }
+            }
+    }
+}

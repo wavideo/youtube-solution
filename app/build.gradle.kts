@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id ("kotlin-parcelize")
 }
 
 android {
@@ -51,5 +52,4 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation ("androidx.fragment:fragment-ktx:1.6.0")
     implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
-
 }

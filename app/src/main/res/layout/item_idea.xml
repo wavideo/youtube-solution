@@ -3,18 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingVertical="4dp">
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_item_idea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_box_h"
-        android:layout_marginVertical="@dimen/padding_v"
-        android:background="@drawable/bg_stroke_editable"
+        android:layout_marginVertical="4dp"
+        android:background="@drawable/bg_radius_stroke"
         android:paddingHorizontal="@dimen/padding_text_h"
-        android:paddingVertical="20dp">
+        android:paddingVertical="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="14dp">
 
 
         <TextView
@@ -25,8 +27,8 @@
             android:maxLength="100"
             android:text="유저가 입력했던  콘텐츠 아이디어가\n출력됩니다"
             android:textColor="@color/black"
-            android:textStyle="bold"
             android:textSize="@dimen/text_size_message_body"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,13 +37,13 @@
             android:id="@+id/tv_item_idea_keyword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_text_small"
             android:background="@drawable/bg_stroke_keyword"
             android:paddingHorizontal="12dp"
             android:paddingVertical="6dp"
             android:text="안녕"
             android:textColor="@color/gray_a"
             android:textStyle="bold"
-            android:layout_marginTop="@dimen/margin_text_small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_item_idea_description"
             app:layout_constraintTop_toBottomOf="@+id/tv_item_idea_description"
@@ -51,7 +53,7 @@
             android:id="@+id/iv_icon_arrow"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:src="@drawable/arrow_forward"
+            android:src="@drawable/icon_arrow_forward"
             android:tint="@color/gray_a"
             app:layout_constraintBottom_toBottomOf="@+id/tv_item_idea_view"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,11 +63,11 @@
             android:id="@+id/tv_item_idea_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="30만뷰"
-            android:textStyle="bold"
-            android:textSize="@dimen/text_size_message_title"
-            android:textColor="@color/gray_a"
             android:layout_marginEnd="@dimen/margin_text_small"
+            android:text="30만뷰"
+            android:textColor="@color/gray_a"
+            android:textSize="@dimen/text_size_message_title"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/iv_icon_arrow" />
 

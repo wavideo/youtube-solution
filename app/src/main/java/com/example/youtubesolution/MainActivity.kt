@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.youtubesolution.databinding.ActivityMainBinding
-import com.example.youtubesolution.dataclass.Idea
 import com.example.youtubesolution.dataclass.IdeaViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -24,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setFragment(frag: Fragment) {
         supportFragmentManager.commit {
-            replace(R.id.fragment_container, frag)
+            replace(R.id.fragment_container_main_activity, frag)
             setReorderingAllowed(true)
         }
     }

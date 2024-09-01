@@ -5,4 +5,7 @@
     <string name="tv_subtext_error">영상의 핵심내용을 담아 <u>한 문장</u>으로 입력해주세요</string>
     <string name="tv_qeustion_keyword">조회수 이력을 찾기위해\n아이디어의 <font color="#FF8A00">핵심 키워드</font>를 정해주세요</string>
     <string name="tv_subtext_createidea"><font color="#FF8A00">높은 조회수가 나온 이력이 있는 소재</font>인지 검증해드립니다</string>
+    <string name="tv_title_howto_click"><b>클릭</b>을 부르는 <b>제목/썸네일</b> 비법</string>
+    <string name="tv_title_howto_watching"><b>오래 시청</b>하게 만드는 <b>내용구성</b> 비법</string>
+    <string name="tv_string_input_result"><u>분석 결과 직접 입력하기</u></string>
 </resources>

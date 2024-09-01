@@ -19,7 +19,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.youtubesolution.databinding.FragmentCreateIdeaBinding
 import com.example.youtubesolution.dataclass.Idea
+import com.example.youtubesolution.dataclass.IdeaAnalysis
 import com.example.youtubesolution.dataclass.IdeaViewModel
+import com.example.youtubesolution.dataclass.IsRequested
+import java.util.UUID
 
 class CreateIdeaFragment : Fragment() {
     private val viewModel by activityViewModels<IdeaViewModel>()
@@ -39,9 +42,14 @@ class CreateIdeaFragment : Fragment() {
 
     }
 
+    lateinit var id: String
     lateinit var description: String
     lateinit var keyword: String
     private var isShorts: Boolean = false
+
+    fun generateRandomId(): String {
+        return UUID.randomUUID().toString()
+    }
 
     private fun initViews() {
         hideViews(
@@ -71,7 +79,6 @@ class CreateIdeaFragment : Fragment() {
     }
 
     private fun handleDescription() {
-
         description = binding.etAnswerDescription.text.toString()
         binding.tvCheckDescription.setText(description)
 
@@ -92,9 +99,14 @@ class CreateIdeaFragment : Fragment() {
     private fun handleKeyword() {
         keyword = binding.etAnswerKeyword.text.toString()
         isShorts = binding.cbCheckboxIsshorts.isChecked
+        id = generateRandomId()
 
-        val newIdea = Idea(description, keyword, isShorts, true)
+        val newIdea = Idea(id, description, keyword, isShorts, IsRequested.NOT_REQUESTED)
         viewModel.addIdea(newIdea)
+
+        val emptyIdeaAnalysis = IdeaAnalysis(id, 0, "", "","")
+        viewModel.addIdeaAnalysis(emptyIdeaAnalysis)
+
         parentFragmentManager.popBackStack()
     }
 

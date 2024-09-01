@@ -1,9 +1,12 @@
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.youtubesolution.databinding.ItemIdeaBinding
 import com.example.youtubesolution.dataclass.Idea
+import com.example.youtubesolution.dataclass.IdeaViewModel
+import com.example.youtubesolution.formatViews
 
 class IdeaAdapter(var items:MutableList<Idea>) : RecyclerView.Adapter<IdeaAdapter.Holder>(){
     inner class Holder(val binding : ItemIdeaBinding) : RecyclerView.ViewHolder (binding.root) {
@@ -13,10 +16,22 @@ class IdeaAdapter(var items:MutableList<Idea>) : RecyclerView.Adapter<IdeaAdapte
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.description.text = items[position].description
-        holder.keyword.text = items[position].keyword
-        holder.viewCount.text = "100만뷰"
+        val idea = items[position]
+        val ideaAnalysis = viewModel?.getIdeaAnalysisById(idea.id)
+
+        holder.description.text = idea.description
+        holder.keyword.text = idea.keyword
+        holder.viewCount.text = formatViews(ideaAnalysis!!.refViewCount)
+
+        holder.itemView.setOnClickListener {
+            itemClick?.onItemClick(idea)
+        }
     }
+
+    interface OnItemClickListener {
+        fun onItemClick(idea: Idea)
+    }
+    var itemClick : OnItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         var binding = ItemIdeaBinding.inflate(LayoutInflater.from(parent.context),parent, false)
@@ -30,6 +45,11 @@ class IdeaAdapter(var items:MutableList<Idea>) : RecyclerView.Adapter<IdeaAdapte
         return position.toLong()
     }
 
+
+    private var viewModel: IdeaViewModel? = null
+    fun setViewModel(viewModel: IdeaViewModel) {
+        this.viewModel = viewModel
+    }
 
     fun updateItems(newItems: List<Idea>) {
         items.clear()
