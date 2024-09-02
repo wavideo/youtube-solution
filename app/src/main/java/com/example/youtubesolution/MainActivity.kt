@@ -8,16 +8,22 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.youtubesolution.databinding.ActivityMainBinding
 import com.example.youtubesolution.dataclass.IdeaViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
     private val viewModel: IdeaViewModel by viewModels<IdeaViewModel>()
-    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater)}
+    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
-        setFragment(IdeaHomeFragment())
+
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            setFragment(IdeaHomeFragment())
+        } else {
+            setFragment(SignInFragment())
+        }
 
     }
 
@@ -28,3 +34,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
