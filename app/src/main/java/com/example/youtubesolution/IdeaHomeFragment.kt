@@ -55,7 +55,6 @@ class IdeaHomeFragment : Fragment() {
         adapter.setViewModel(viewModel)
         binding.rvIdeaList.adapter = adapter
         binding.rvIdeaList.layoutManager = LinearLayoutManager(requireContext())
-
         viewModel.ideas.observe(viewLifecycleOwner) { ideas ->
             adapter.submitList(ideas)
         }

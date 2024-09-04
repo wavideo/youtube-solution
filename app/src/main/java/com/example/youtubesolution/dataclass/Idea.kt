@@ -11,18 +11,18 @@ enum class IsRequested {
 }
 @Parcelize
 data class Idea(
-    val id: String,
-    val description: String,
-    val keyword: String,
-    val isShorts : Boolean,
-    val isRequested: IsRequested
+    val id: String = "",
+    val description: String = "",
+    val keyword: String = "",
+    val isShorts : Boolean = false,
+    val isRequested: IsRequested = IsRequested.NOT_REQUESTED
 ): Parcelable
 
 @Parcelize
 data class IdeaAnalysis(
-    val ideaId: String,
-    val refViewCount: Int,
-    val refTitle: String,
-    val howtoClick: String,
-    val howtoWatching: String
+    val ideaId: String = "",
+    val refViewCount: Int = -1,
+    val refTitle: String = "",
+    val howtoClick: String = "",
+    val howtoWatching: String = ""
 ): Parcelable

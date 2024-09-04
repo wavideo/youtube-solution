@@ -16,8 +16,12 @@ class IdeaViewModel : ViewModel() {
     private val _ideaAnalyses = MutableLiveData<List<IdeaAnalysis>>(mutableListOf())
     val ideaAnalyses: LiveData<List<IdeaAnalysis>> = _ideaAnalyses
 
+    private val _isInitialized = MutableLiveData<Boolean>(false)
+    val isInitialized: LiveData<Boolean> get() = _isInitialized
+
     init {
         fetchIdeasFromFirestore()
+        // 서버 변화를 감지해서 fetch
     }
 
     fun addIdea(idea: Idea) {
@@ -115,6 +119,7 @@ class IdeaViewModel : ViewModel() {
                 _ideaAnalyses.value = ideaAnalysislist
             }
 
+        _isInitialized.value = true
     }
 
 
