@@ -8,7 +8,6 @@ import android.text.Spanned
 import android.text.TextWatcher
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,17 +15,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import com.example.youtubesolution.databinding.FragmentCreateIdeaBinding
 import com.example.youtubesolution.dataclass.Idea
 import com.example.youtubesolution.dataclass.IdeaAnalysis
-import com.example.youtubesolution.dataclass.IdeaViewModel
+import com.example.youtubesolution.dataclass.SharedViewModel
 import com.example.youtubesolution.dataclass.IsRequested
-import com.google.firebase.auth.FirebaseAuth
 import java.util.UUID
 
 class CreateIdeaFragment : Fragment() {
-    private val viewModel by activityViewModels<IdeaViewModel>()
+    private val viewModel by activityViewModels<SharedViewModel>()
     private val binding by lazy { FragmentCreateIdeaBinding.inflate(layoutInflater) }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import com.example.youtubesolution.databinding.FragmentEditIdeaAnalysisBinding
-import com.example.youtubesolution.dataclass.IdeaViewModel
+import com.example.youtubesolution.dataclass.SharedViewModel
 import com.example.youtubesolution.dataclass.IsRequested
 
 private const val ARG_ID = "id"
 
 class EditIdeaAnalysisFragment : Fragment() {
-    private val viewModel by activityViewModels<IdeaViewModel>()
+    private val viewModel by activityViewModels<SharedViewModel>()
     private val binding by lazy { FragmentEditIdeaAnalysisBinding.inflate(layoutInflater) }
 
     private var id: String? = null

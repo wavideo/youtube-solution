@@ -1,11 +1,9 @@
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.youtubesolution.databinding.ItemIdeaBinding
 import com.example.youtubesolution.dataclass.Idea
-import com.example.youtubesolution.dataclass.IdeaViewModel
+import com.example.youtubesolution.dataclass.SharedViewModel
 import com.example.youtubesolution.formatViews
 
 class IdeaAdapter(var items:MutableList<Idea>) : RecyclerView.Adapter<IdeaAdapter.Holder>(){
@@ -17,9 +15,7 @@ class IdeaAdapter(var items:MutableList<Idea>) : RecyclerView.Adapter<IdeaAdapte
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val idea = items[position]
-        val ideaAnalysis = viewModel?.getIdeaAnalysisById(idea.id)
-
-        viewModel?.loadIdeaAnalysisFromFirestore(idea.id)
+        val ideaAnalysis = viewModel?.getIdeaAnalysisById(idea.ideaId)
 
         holder.description.text = idea.description
         holder.keyword.text = idea.keyword
@@ -48,8 +44,8 @@ class IdeaAdapter(var items:MutableList<Idea>) : RecyclerView.Adapter<IdeaAdapte
     }
 
 
-    private var viewModel: IdeaViewModel? = null
-    fun setViewModel(viewModel: IdeaViewModel) {
+    private var viewModel: SharedViewModel? = null
+    fun setViewModel(viewModel: SharedViewModel) {
         this.viewModel = viewModel
     }
 

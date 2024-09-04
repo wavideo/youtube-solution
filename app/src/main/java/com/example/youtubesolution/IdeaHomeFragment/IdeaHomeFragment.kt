@@ -15,11 +15,10 @@ import com.example.youtubesolution.IdeaDetailFragment
 import com.example.youtubesolution.R
 import com.example.youtubesolution.databinding.FragmentIdeaHomeBinding
 import com.example.youtubesolution.dataclass.Idea
-import com.example.youtubesolution.dataclass.IdeaViewModel
-import com.example.youtubesolution.getUserId
+import com.example.youtubesolution.dataclass.SharedViewModel
 
 class IdeaHomeFragment : Fragment() {
-    private val viewModel by activityViewModels<IdeaViewModel>()
+    private val viewModel by activityViewModels<SharedViewModel>()
     private val binding by lazy { FragmentIdeaHomeBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,7 +64,7 @@ class IdeaHomeFragment : Fragment() {
 
         adapter.itemClick = object : IdeaAdapter.OnItemClickListener {
             override fun onItemClick(idea: Idea) {
-                val id = idea.id
+                val id = idea.ideaId
                 parentFragmentManager.commit {
                     replace(
                         R.id.fragment_container_main_activity,

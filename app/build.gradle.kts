@@ -63,5 +63,7 @@ dependencies {
 
     implementation("com.google.firebase:firebase-firestore-ktx")
 
+//    implementation ("org.komoran:komoran-core:3.0.1") // 형태소 분석기
+
 
 }

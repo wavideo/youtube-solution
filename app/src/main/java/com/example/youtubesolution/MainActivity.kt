@@ -8,11 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.youtubesolution.IdeaHomeFragment.IdeaHomeFragment
 import com.example.youtubesolution.databinding.ActivityMainBinding
-import com.example.youtubesolution.dataclass.IdeaViewModel
+import com.example.youtubesolution.dataclass.SharedViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel: IdeaViewModel by viewModels<IdeaViewModel>()
+    private val viewModel: SharedViewModel by viewModels<SharedViewModel>()
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {

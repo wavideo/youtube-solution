@@ -1,7 +1,6 @@
 package com.example.youtubesolution.dataclass
 
 import android.os.Parcelable
-import com.example.youtubesolution.formatViews
 import kotlinx.parcelize.Parcelize
 
 enum class IsRequested {
@@ -11,7 +10,7 @@ enum class IsRequested {
 }
 @Parcelize
 data class Idea(
-    val id: String = "",
+    val ideaId: String = "",
     val userId : String = "",
     val description: String = "",
     val keyword: String = "",

@@ -1,0 +1,13 @@
+1. EditIdeaAnalysisFragment
+ -  XML 디벨롭하기
+ -  입력 예외처리 적용하기
+
+2. 관리자 모드 만들기
+
+3. IdeaDetailFragmnet
+ - 유튜브 API 연동해서 영상 정보 노출하기
+
+4.  SignInFragment
+ -  유튜브 채널 정보 (이름, 구독자수 등) 입력하기
+ -  로그아웃 버튼 만들기
+ -  카카오톡 로그인 만들기

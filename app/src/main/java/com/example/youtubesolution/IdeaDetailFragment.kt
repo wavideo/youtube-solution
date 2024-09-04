@@ -14,7 +14,7 @@ import com.example.youtubesolution.databinding.FragmentIdeaDetailStubRequestBind
 import com.example.youtubesolution.databinding.FragmentIdeaDetailStubResultBinding
 import com.example.youtubesolution.dataclass.Idea
 import com.example.youtubesolution.dataclass.IdeaAnalysis
-import com.example.youtubesolution.dataclass.IdeaViewModel
+import com.example.youtubesolution.dataclass.SharedViewModel
 import com.example.youtubesolution.dataclass.IsRequested
 
 enum class RequestState {
@@ -26,7 +26,7 @@ enum class RequestState {
 private const val ARG_ID = "id"
 
 class IdeaDetailFragment : Fragment() {
-    private val viewModel by activityViewModels<IdeaViewModel>()
+    private val viewModel by activityViewModels<SharedViewModel>()
     private val binding by lazy { FragmentIdeaDetailBinding.inflate(layoutInflater) }
     private val bindingRequest by lazy { FragmentIdeaDetailStubRequestBinding.bind(binding.viewStub.inflate()) }
     private val bindingResult by lazy { FragmentIdeaDetailStubResultBinding.bind(binding.viewStub.inflate()) }

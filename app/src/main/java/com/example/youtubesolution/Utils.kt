@@ -2,6 +2,7 @@ package com.example.youtubesolution
 
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
+//import com.kiyohara.komoran.Komoran
 
 fun hideViews (vararg views: View){
     views.forEach { it.visibility = View.GONE}
@@ -10,8 +11,8 @@ fun showViews (vararg views: View){
     views.forEach { it.visibility = View.VISIBLE}
 }
 
-fun getUserId() {
-    FirebaseAuth.getInstance().currentUser?.uid.toString()
+fun getUserId(): String? {
+    return FirebaseAuth.getInstance().currentUser?.uid
 }
 
 fun formatViews(views: Int): String {
@@ -39,3 +40,14 @@ fun formatViews(views: Int): String {
         else -> "${adjustMillions(views / 100_000_000)}억뷰"
     }
 }
+
+//fun extractKeywords(text: String): List<String> {
+//    val komoran = Komoran("models-full") // 모델 로드
+//    val result = komoran.analyze(text)
+//
+//    val keywords = result
+//        .filter { it.pos == "NNG" || it.pos == "NNP" } // 명사(NNG, NNP) 필터링
+//        .map { it.lexeme } // 단어 추출
+//
+//    return keywords
+//}
