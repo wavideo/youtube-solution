@@ -19,6 +19,8 @@ class IdeaAdapter(var items:MutableList<Idea>) : RecyclerView.Adapter<IdeaAdapte
         val idea = items[position]
         val ideaAnalysis = viewModel?.getIdeaAnalysisById(idea.id)
 
+        viewModel?.loadIdeaAnalysisFromFirestore(idea.id)
+
         holder.description.text = idea.description
         holder.keyword.text = idea.keyword
         holder.viewCount.text = formatViews(ideaAnalysis!!.refViewCount)

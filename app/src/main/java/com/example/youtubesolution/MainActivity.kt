@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import com.example.youtubesolution.IdeaHomeFragment.IdeaHomeFragment
 import com.example.youtubesolution.databinding.ActivityMainBinding
 import com.example.youtubesolution.dataclass.IdeaViewModel
 import com.google.firebase.auth.FirebaseAuth

@@ -1,11 +1,17 @@
 package com.example.youtubesolution
 
 import android.view.View
+import com.google.firebase.auth.FirebaseAuth
+
 fun hideViews (vararg views: View){
     views.forEach { it.visibility = View.GONE}
 }
 fun showViews (vararg views: View){
     views.forEach { it.visibility = View.VISIBLE}
+}
+
+fun getUserId() {
+    FirebaseAuth.getInstance().currentUser?.uid.toString()
 }
 
 fun formatViews(views: Int): String {

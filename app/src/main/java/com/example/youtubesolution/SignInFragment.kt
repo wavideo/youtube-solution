@@ -1,6 +1,5 @@
 package com.example.youtubesolution
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.commit
-import com.example.youtubesolution.databinding.FragmentIdeaHomeBinding
+import com.example.youtubesolution.IdeaHomeFragment.IdeaHomeFragment
 
 import com.example.youtubesolution.databinding.FragmentSignInBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn

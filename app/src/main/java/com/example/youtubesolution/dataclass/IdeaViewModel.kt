@@ -1,8 +1,10 @@
 package com.example.youtubesolution.dataclass
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.youtubesolution.getUserId
 import com.google.firebase.firestore.FirebaseFirestore
 
 class IdeaViewModel : ViewModel() {
@@ -16,12 +18,8 @@ class IdeaViewModel : ViewModel() {
     private val _ideaAnalyses = MutableLiveData<List<IdeaAnalysis>>(mutableListOf())
     val ideaAnalyses: LiveData<List<IdeaAnalysis>> = _ideaAnalyses
 
-    private val _isInitialized = MutableLiveData<Boolean>(false)
-    val isInitialized: LiveData<Boolean> get() = _isInitialized
-
     init {
         fetchIdeasFromFirestore()
-        // 서버 변화를 감지해서 fetch
     }
 
     fun addIdea(idea: Idea) {
@@ -96,6 +94,7 @@ class IdeaViewModel : ViewModel() {
         return ideaAnalysislist[index]
     }
 
+//    .whereEqualTo("userId", getUserId())
     private fun fetchIdeasFromFirestore() {
         db.collection("ideasCollection")
             .get()
@@ -107,7 +106,6 @@ class IdeaViewModel : ViewModel() {
                 }
                 _ideas.value = idealist
             }
-
         db.collection("ideaAnalysesCollection")
             .get()
             .addOnSuccessListener { result ->
@@ -118,8 +116,10 @@ class IdeaViewModel : ViewModel() {
                 }
                 _ideaAnalyses.value = ideaAnalysislist
             }
+    }
 
-        _isInitialized.value = true
+    fun loadIdeaAnalysisFromFirestore(id : String){
+
     }
 
 

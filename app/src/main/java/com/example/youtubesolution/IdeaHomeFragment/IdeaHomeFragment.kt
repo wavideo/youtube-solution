@@ -1,7 +1,8 @@
-package com.example.youtubesolution
+package com.example.youtubesolution.IdeaHomeFragment
 
 import IdeaAdapter
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +10,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.youtubesolution.CreateIdeaFragment
+import com.example.youtubesolution.IdeaDetailFragment
+import com.example.youtubesolution.R
 import com.example.youtubesolution.databinding.FragmentIdeaHomeBinding
 import com.example.youtubesolution.dataclass.Idea
 import com.example.youtubesolution.dataclass.IdeaViewModel
-import com.example.youtubesolution.dataclass.IsRequested
-import com.google.firebase.firestore.FirebaseFirestore
+import com.example.youtubesolution.getUserId
 
 class IdeaHomeFragment : Fragment() {
     private val viewModel by activityViewModels<IdeaViewModel>()
@@ -32,6 +35,7 @@ class IdeaHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupClickListners()
+        Log.d ("체크","${viewModel.ideas.value?.size}")
         setupRecyclerView()
     }
 
@@ -63,7 +67,10 @@ class IdeaHomeFragment : Fragment() {
             override fun onItemClick(idea: Idea) {
                 val id = idea.id
                 parentFragmentManager.commit {
-                    replace(R.id.fragment_container_main_activity, IdeaDetailFragment.newInstance(id))
+                    replace(
+                        R.id.fragment_container_main_activity,
+                        IdeaDetailFragment.newInstance(id)
+                    )
                     setReorderingAllowed(true)
                     addToBackStack("")
                 }

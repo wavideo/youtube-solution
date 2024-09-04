@@ -22,6 +22,7 @@ import com.example.youtubesolution.dataclass.Idea
 import com.example.youtubesolution.dataclass.IdeaAnalysis
 import com.example.youtubesolution.dataclass.IdeaViewModel
 import com.example.youtubesolution.dataclass.IsRequested
+import com.google.firebase.auth.FirebaseAuth
 import java.util.UUID
 
 class CreateIdeaFragment : Fragment() {
@@ -42,14 +43,11 @@ class CreateIdeaFragment : Fragment() {
 
     }
 
-    lateinit var id: String
-    lateinit var description: String
-    lateinit var keyword: String
+    private lateinit var id: String
+    private lateinit var description: String
+    private lateinit var keyword: String
     private var isShorts: Boolean = false
-
-    fun generateRandomId(): String {
-        return UUID.randomUUID().toString()
-    }
+    private lateinit var userId : String
 
     private fun initViews() {
         hideViews(
@@ -100,14 +98,19 @@ class CreateIdeaFragment : Fragment() {
         keyword = binding.etAnswerKeyword.text.toString()
         isShorts = binding.cbCheckboxIsshorts.isChecked
         id = generateRandomId()
+        userId = getUserId().toString()
 
-        val newIdea = Idea(id, description, keyword, isShorts, IsRequested.NOT_REQUESTED)
+        val newIdea = Idea(id, userId, description, keyword, isShorts, IsRequested.NOT_REQUESTED)
         viewModel.addIdea(newIdea)
 
-        val emptyIdeaAnalysis = IdeaAnalysis(id, 0, "", "","")
+        val emptyIdeaAnalysis = IdeaAnalysis(id, userId,0, "", "","")
         viewModel.addIdeaAnalysis(emptyIdeaAnalysis)
 
         parentFragmentManager.popBackStack()
+    }
+
+    fun generateRandomId(): String {
+        return UUID.randomUUID().toString()
     }
 
     private fun setupTextWatcher(editText: TextView, tvLength: TextView, maxLength: Int) {

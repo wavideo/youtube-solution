@@ -12,6 +12,7 @@ enum class IsRequested {
 @Parcelize
 data class Idea(
     val id: String = "",
+    val userId : String = "",
     val description: String = "",
     val keyword: String = "",
     val isShorts : Boolean = false,
@@ -21,6 +22,7 @@ data class Idea(
 @Parcelize
 data class IdeaAnalysis(
     val ideaId: String = "",
+    val userId: String = "",
     val refViewCount: Int = -1,
     val refTitle: String = "",
     val howtoClick: String = "",

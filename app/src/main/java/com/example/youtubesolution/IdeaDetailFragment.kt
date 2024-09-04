@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
+import com.example.youtubesolution.IdeaHomeFragment.IdeaHomeFragment
 import com.example.youtubesolution.RequestState.*
 import com.example.youtubesolution.databinding.FragmentIdeaDetailBinding
 import com.example.youtubesolution.databinding.FragmentIdeaDetailStubRequestBinding
