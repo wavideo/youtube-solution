@@ -9,6 +9,7 @@ import androidx.fragment.app.commit
 import com.example.youtubesolution.IdeaHomeFragment.IdeaHomeFragment
 import com.example.youtubesolution.databinding.ActivityMainBinding
 import com.example.youtubesolution.dataclass.SharedViewModel
+import com.example.youtubesolution.dataclass.User
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -20,12 +21,11 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
 
-        if (FirebaseAuth.getInstance().currentUser != null) {
-            setFragment(IdeaHomeFragment())
-        } else {
+        if (FirebaseAuth.getInstance().currentUser == null) {
             setFragment(SignInFragment())
+        } else {
+            setFragment(IdeaHomeFragment())
         }
-
     }
 
     private fun setFragment(frag: Fragment) {
@@ -35,4 +35,3 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
-
