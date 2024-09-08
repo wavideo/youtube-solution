@@ -6,52 +6,413 @@
     android:layout_height="match_parent"
     tools:context=".EditIdeaAnalysisFragment">
 
-    <EditText
-        android:id="@+id/et_youtube_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginTop="100dp"
-        android:hint="영상이름"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="40dp" />
 
-    <EditText
-        android:id="@+id/et_youtube_viewcount"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_layout_topbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
-        android:hint="뷰 숫자"
-        app:layout_constraintTop_toBottomOf="@+id/et_youtube_title"
-        tools:layout_editor_absoluteX="40dp" />
+        android:layout_height="@dimen/height_topbar">
 
-    <EditText
-        android:id="@+id/et_howto_click"
+        <ImageView
+            android:id="@+id/iv_icon_close"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="@dimen/padding_box_h"
+            android:src="@drawable/icon_close"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/sv_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
-        android:hint="클릭률 설명"
-        app:layout_constraintTop_toBottomOf="@+id/et_youtube_viewcount"
-        tools:layout_editor_absoluteX="40dp" />
-
-    <EditText
-        android:id="@+id/et_howto_watching"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
-        android:hint="시청지속 설명"
-        app:layout_constraintTop_toBottomOf="@+id/et_howto_click"
-        tools:layout_editor_absoluteX="40dp" />
-
-    <Button
-        android:id="@+id/btn_complete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="적용"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_howto_watching" />
+        app:layout_constraintTop_toBottomOf="@+id/cl_layout_topbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_item_idea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/padding_box_h"
+                android:layout_marginVertical="@dimen/padding_v"
+                android:background="@drawable/bg_radius_stroke"
+                android:paddingHorizontal="@dimen/padding_text_h"
+                android:paddingVertical="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
 
+                <TextView
+                    android:id="@+id/tv_item_idea_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:maxLength="100"
+                    android:text="유저가 입력했던  콘텐츠 아이디어가\n출력됩니다"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_message_body"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_item_idea_keyword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_text_small"
+                    android:background="@drawable/bg_stroke_keyword"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="6dp"
+                    android:text="안녕"
+                    android:textColor="@color/gray_a"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tv_item_idea_description"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_item_idea_description"
+                    tools:layout_editor_absoluteX="30dp" />
+
+                <TextView
+                    android:id="@+id/tv_item_idea_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="17만뷰"
+                    android:textColor="@color/gray_a"
+                    android:textSize="@dimen/text_size_message_title"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_question_find_video"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/padding_text_h"
+                android:paddingVertical="@dimen/padding_v"
+                android:visibility="visible"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/cl_item_idea">
+
+                <TextView
+                    android:id="@+id/tv_qeustion_find_video"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_text_small"
+                    android:layout_marginTop="2dp"
+                    android:text="000 소재의 조회수 이력 찾기"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_message_body"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_icon_subtext_find_video"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/icon_error"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_qeustion_find_video"
+                    app:tint="@color/gray_b" />
+
+                <TextView
+                    android:id="@+id/tv_subtext_error"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_text_small"
+                    android:text="1만 이하 구독자 중 가장 조회수가 높은 영상"
+                    android:textColor="@color/gray_b"
+                    android:textSize="@dimen/text_size_message_body_small"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_icon_subtext_find_video"
+                    app:layout_constraintStart_toEndOf="@+id/iv_icon_subtext_find_video"
+                    app:layout_constraintTop_toTopOf="@+id/iv_icon_subtext_find_video" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_answer_find_video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginHorizontal="@dimen/padding_box_h"
+                android:layout_marginVertical="@dimen/padding_v"
+                android:background="@drawable/bg_radius_stroke"
+                android:elevation="3dp"
+                android:paddingHorizontal="@dimen/padding_text_h"
+                android:paddingVertical="@dimen/padding_v"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@+id/cl_question_find_video">
+
+                <EditText
+                    android:id="@+id/et_youtube_title"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_none"
+                    android:gravity="top"
+                    android:hint="영상 제목을 입력하세요 "
+                    android:imeOptions="actionDone"
+                    android:maxLength="100"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/horizontal_line"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0" />
+
+
+                <View
+                    android:id="@+id/horizontal_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/gray_b"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_youtube_viewcount_end" />
+
+
+                <TextView
+                    android:id="@+id/tv_youtube_viewcount_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="조회수 : "
+                    android:textColor="@color/gray_a"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <EditText
+                    android:id="@+id/et_youtube_viewcount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_none"
+                    android:hint="조회수 입력"
+                    android:gravity="end"
+                    android:inputType="number"
+                    android:textColor="@color/red"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_youtube_viewcount_end" />
+
+                <TextView
+                    android:id="@+id/tv_youtube_viewcount_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="뷰"
+                    android:textColor="@color/red"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_title_howto_click"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/padding_text_h"
+                android:paddingTop="30dp"
+                android:paddingBottom="@dimen/padding_v"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_answer_find_video">
+
+                <ImageView
+                    android:id="@+id/iv_icon_howto_click"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_web_traffic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/black" />
+
+
+                <TextView
+                    android:id="@+id/tv_title_howto_click"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_text_small"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/tv_title_howto_click"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_message_body"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iv_icon_howto_click"
+                    app:layout_constraintTop_toTopOf="@+id/iv_icon_howto_click" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_result_howto_click"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/padding_box_h"
+                android:background="@drawable/bg_radius_stroke"
+                android:paddingHorizontal="@dimen/padding_text_h"
+                android:paddingVertical="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_title_howto_click">
+
+
+                <EditText
+                    android:id="@+id/et_howto_click"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:maxLength="100"
+                    android:hint="이 영상에서 배울 수 있는\n제목, 썸네일 구성 노하우를 메모해보세요"
+                    android:background="@drawable/bg_none"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_message_body"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_title_howto_watching"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/padding_text_h"
+                android:paddingTop="30dp"
+                android:paddingBottom="@dimen/padding_v"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_result_howto_click">
+
+                <ImageView
+                    android:id="@+id/iv_icon_howto_watching"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_slideshow"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/black" />
+
+
+                <TextView
+                    android:id="@+id/tv_title_howto_watching"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_text_small"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/tv_title_howto_watching"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_message_body"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iv_icon_howto_watching"
+                    app:layout_constraintTop_toTopOf="@+id/iv_icon_howto_watching" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_result_howto_watching"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/padding_box_h"
+                android:background="@drawable/bg_radius_stroke"
+                android:paddingHorizontal="@dimen/padding_text_h"
+                android:paddingVertical="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_title_howto_watching">
+
+                <EditText
+                    android:id="@+id/et_howto_watching"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:maxLength="100"
+                    android:hint="이 영상에서 배울 수 있는\n내용구성 노하우를 메모해보세요"
+                    android:background="@drawable/bg_none"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_message_body"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_button_complete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/padding_box_h"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/bg_stroke_keyword"
+                android:backgroundTint="@color/orange"
+                android:elevation="3dp"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/cl_result_howto_watching">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/iv_icon_request"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/icon_check_circle_fill"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/tv_button_request"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="12dp"
+                        android:text="분석 내용 저장하기"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_message_title"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/iv_icon_request"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                app:layout_constraintTop_toBottomOf="@+id/cl_button_complete" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

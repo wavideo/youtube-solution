@@ -1,8 +1,14 @@
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.youtubesolution.R
+import com.example.youtubesolution.checkIsRequested
 import com.example.youtubesolution.databinding.ItemIdeaBinding
 import com.example.youtubesolution.dataclass.Idea
+import com.example.youtubesolution.dataclass.IsRequested
 import com.example.youtubesolution.dataclass.SharedViewModel
 import com.example.youtubesolution.formatViews
 
@@ -19,7 +25,7 @@ class IdeaAdapter(var items:MutableList<Idea>) : RecyclerView.Adapter<IdeaAdapte
 
         holder.description.text = idea.description
         holder.keyword.text = idea.keyword
-        holder.viewCount.text = formatViews(ideaAnalysis!!.refViewCount)
+        checkIsRequested(holder.viewCount, idea, ideaAnalysis = ideaAnalysis!!)
 
         holder.itemView.setOnClickListener {
             itemClick?.onItemClick(idea)

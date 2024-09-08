@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import com.example.youtubesolution.databinding.FragmentEditIdeaAnalysisBinding
@@ -37,12 +38,22 @@ class EditIdeaAnalysisFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initView()
+        initIdeaView()
+        initAnalysisView()
         setupClickListners()
 
     }
 
-    private fun initView() {
+    private fun initIdeaView() {
+        binding.apply {
+            tvItemIdeaDescription.text = idea?.description
+            tvItemIdeaKeyword.text = idea?.keyword
+            checkIsRequested(tvItemIdeaView, idea!!, ideaAnalysis!!)
+            tvQeustionFindVideo.text = "${idea?.keyword} 소재의 조회수 이력 찾기"
+        }
+    }
+
+    private fun initAnalysisView() {
         val refViewCount =
             if (ideaAnalysis.refViewCount == 0){
                 ""
@@ -59,7 +70,7 @@ class EditIdeaAnalysisFragment : Fragment() {
     }
 
     private fun setupClickListners() {
-        binding.btnComplete.setOnClickListener {
+        fun edit() {
             val updatedIdeaAnalysis = ideaAnalysis.copy(
                 refTitle = binding.etYoutubeTitle.text.toString(),
                 refViewCount = binding.etYoutubeViewcount.text.toString().toInt(),
@@ -70,10 +81,25 @@ class EditIdeaAnalysisFragment : Fragment() {
             viewModel.updateIdea(idea.copy(isRequested = IsRequested.COMPLETED))
 
             parentFragmentManager.commit {
-                replace(R.id.fragment_container_main_activity, IdeaDetailFragment.newInstance(id.toString()))
+                replace(
+                    R.id.fragment_container_main_activity,
+                    IdeaDetailFragment.newInstance(id.toString())
+                )
                 setReorderingAllowed(true)
                 parentFragmentManager.popBackStack()
             }
+        }
+
+        binding.clButtonComplete.setOnClickListener {
+                if (binding.etYoutubeTitle.text.length < 0) {
+                    Toast.makeText(requireActivity(), "영상 제목을 입력해주세요", Toast.LENGTH_SHORT).show()
+                } else if (binding.etYoutubeViewcount.text.length < 0) {
+                    Toast.makeText(requireActivity(), "조회수를 올바르게 입력해주세요", Toast.LENGTH_SHORT).show()
+                } else if (binding.etYoutubeViewcount.text.toString().toInt() < 1) {
+                    Toast.makeText(requireActivity(), "조회수를 올바르게 입력해주세요", Toast.LENGTH_SHORT).show()
+                } else {
+                    edit()
+                }
         }
 
     }

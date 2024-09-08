@@ -34,7 +34,6 @@ class IdeaHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupClickListners()
-        Log.d ("체크","${viewModel.ideas.value?.size}")
         setupRecyclerView()
     }
 
@@ -64,11 +63,10 @@ class IdeaHomeFragment : Fragment() {
 
         adapter.itemClick = object : IdeaAdapter.OnItemClickListener {
             override fun onItemClick(idea: Idea) {
-                val id = idea.ideaId
                 parentFragmentManager.commit {
                     replace(
                         R.id.fragment_container_main_activity,
-                        IdeaDetailFragment.newInstance(id)
+                        IdeaDetailFragment.newInstance(idea.ideaId)
                     )
                     setReorderingAllowed(true)
                     addToBackStack("")

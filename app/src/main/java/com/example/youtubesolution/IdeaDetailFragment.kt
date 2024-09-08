@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import com.example.youtubesolution.IdeaHomeFragment.IdeaHomeFragment
-import com.example.youtubesolution.RequestState.*
 import com.example.youtubesolution.databinding.FragmentIdeaDetailBinding
 import com.example.youtubesolution.databinding.FragmentIdeaDetailStubRequestBinding
 import com.example.youtubesolution.databinding.FragmentIdeaDetailStubResultBinding
@@ -17,21 +16,14 @@ import com.example.youtubesolution.dataclass.IdeaAnalysis
 import com.example.youtubesolution.dataclass.SharedViewModel
 import com.example.youtubesolution.dataclass.IsRequested
 
-enum class RequestState {
-    NOT_REQUESTED,
-    REQUESTED,
-    RESULT
-}
-
 private const val ARG_ID = "id"
 
 class IdeaDetailFragment : Fragment() {
     private val viewModel by activityViewModels<SharedViewModel>()
+
     private val binding by lazy { FragmentIdeaDetailBinding.inflate(layoutInflater) }
     private val bindingRequest by lazy { FragmentIdeaDetailStubRequestBinding.bind(binding.viewStub.inflate()) }
     private val bindingResult by lazy { FragmentIdeaDetailStubResultBinding.bind(binding.viewStub.inflate()) }
-
-    private val requestState by lazy { checkRequestState() }
     private val refViewCountFormat by lazy { formatViews(ideaAnalysis?.refViewCount.toString().toInt()) }
 
     private var id: String? = null
@@ -54,10 +46,10 @@ class IdeaDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initView()
         setupClickListeners()
-        setViewStubByRequestState(requestState)
-        setupClickListnersByRequestState(requestState)
+        initIdeaView()
+        setViewStubByRequestState(idea!!.isRequested)
+        setupClickListnersByRequestState(idea!!.isRequested)
 
 
     }
@@ -78,40 +70,34 @@ class IdeaDetailFragment : Fragment() {
 
     }
 
-    private fun initView() {
+    private fun initIdeaView() {
         idea = viewModel.getIdeaById(id)
         ideaAnalysis = viewModel.getIdeaAnalysisById(id)
 
         binding.apply {
             tvItemIdeaDescription.text = idea?.description
             tvItemIdeaKeyword.text = idea?.keyword
-            tvItemIdeaView.text = refViewCountFormat
+            checkIsRequested(tvItemIdeaView, idea!!, ideaAnalysis!!)
         }
     }
 
-    private fun checkRequestState(): RequestState {
-        if (idea?.isRequested == IsRequested.NOT_REQUESTED) {
-            return NOT_REQUESTED
-        } else if (idea?.isRequested == IsRequested.REQUESTED) {
-            return REQUESTED
-        } else {
-            return RESULT
-        }
-    }
-
-    private fun setViewStubByRequestState(requestState : RequestState) {
+    private fun setViewStubByRequestState(requestState : IsRequested) {
 
         when (requestState) {
-            NOT_REQUESTED -> {
+            IsRequested.NOT_REQUESTED -> {
                 setViewStubAsNotRequested()
             }
 
-            REQUESTED -> {
+            IsRequested.REQUESTED -> {
                 setViewStubAsRequested()
             }
 
-            RESULT -> {
+            IsRequested.COMPLETED -> {
                 setViewStubAsResult()
+            }
+
+            IsRequested.ERROR -> {
+                setViewStubAsError()
             }
         }
     }
@@ -135,6 +121,19 @@ class IdeaDetailFragment : Fragment() {
             tvStringRequestSubtext.text =
                 "전문가가 ${idea?.keyword} 키워드\n분석하고 있습니다\n\n분석이 완료되면 알림을 보내드릴게요\n(평균 1일 소요)"
             clButtonRequest.visibility = View.GONE
+            binding.tvButtonEditIdeaAnalysis.visibility = View.GONE
+        }
+    }
+
+    private fun setViewStubAsError() {
+        binding.viewStub.layoutResource = R.layout.fragment_idea_detail_stub_request
+
+        bindingRequest.apply {
+            tvStringRequest.text = "문제가 발생했습니다"
+            tvStringRequestSubtext.text =
+                "죄송합니다. 조속히 해결하겠습니다"
+            clButtonRequest.visibility = View.GONE
+            binding.tvButtonEditIdeaAnalysis.visibility = View.GONE
         }
     }
 
@@ -155,23 +154,44 @@ class IdeaDetailFragment : Fragment() {
 
             tvResultHowtoClick.text = ideaAnalysis?.howtoClick
             tvResultHowtoWatching.text = ideaAnalysis?.howtoWatching
+
+            if (ideaAnalysis?.howtoClick == "") {
+                bindingResult.clTitleHowtoClick.visibility = View.GONE
+                bindingResult.clResultHowtoClick.visibility = View.GONE
+            }
+
+            if (ideaAnalysis?.howtoWatching == "") {
+                bindingResult.clTitleHowtoWatching.visibility = View.GONE
+                bindingResult.clResultHowtoWatching.visibility = View.GONE
+            }
+
+            if (ideaAnalysis?.howtoWatching == "" && ideaAnalysis?.howtoClick == ""){
+                bindingResult.horizontalLine.visibility = View.GONE
+                bindingResult.tvStringHowtoUseKeyword.visibility = View.GONE
+            }
         }
     }
 
-    private fun setupClickListnersByRequestState(requestState : RequestState) {
-        setupClickListenerEditIdeaAnalysis()
+    private fun setupClickListnersByRequestState(requestState : IsRequested) {
 
         when (requestState) {
-            NOT_REQUESTED -> {
+            IsRequested.NOT_REQUESTED -> {
+                setupClickListenerEditIdeaAnalysis()
+
                 bindingRequest.clButtonRequest.setOnClickListener {
                     updateIsRequired(IsRequested.REQUESTED)
                 }
             }
 
-            REQUESTED -> {
+            IsRequested.REQUESTED -> {
             }
 
-            RESULT -> {
+            IsRequested.COMPLETED -> {
+                binding.tvButtonEditIdeaAnalysis.text = "분석 결과 수정하기"
+                setupClickListenerEditIdeaAnalysis()
+            }
+
+            IsRequested.ERROR -> {
             }
         }
     }

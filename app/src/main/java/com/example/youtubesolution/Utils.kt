@@ -1,6 +1,11 @@
 package com.example.youtubesolution
 
 import android.view.View
+import android.widget.TextView
+import androidx.core.content.ContextCompat
+import com.example.youtubesolution.dataclass.Idea
+import com.example.youtubesolution.dataclass.IdeaAnalysis
+import com.example.youtubesolution.dataclass.IsRequested
 import com.google.firebase.auth.FirebaseAuth
 //import com.kiyohara.komoran.Komoran
 
@@ -30,7 +35,7 @@ fun formatViews(views: Int): String {
     }
 
     return when {
-        views == 0 -> "분석 이전"
+        views == 0 -> "데이터 없음"
         views < 1000 -> "${views}뷰"
         views < 10_000 -> "${(views / 1000.0).formatToString()}천뷰"
         views < 100_000 -> "${(views / 10_000.0).formatToString()}만뷰"
@@ -38,6 +43,30 @@ fun formatViews(views: Int): String {
         views < 10_000_000 -> "${adjustMillions(views / 100_000)}0만뷰"
         views < 100_000_000 -> "${adjustMillions(views / 1_000_000)}00만뷰"
         else -> "${adjustMillions(views / 100_000_000)}억뷰"
+    }
+}
+
+inline fun <reified T : Enum<T>> getEnumFromString(value: String?, default: T): T {
+    return try {
+        if (value != null) enumValueOf<T>(value) else default
+    } catch (e: IllegalArgumentException) {
+        default
+    }
+}
+
+fun checkIsRequested(view: TextView, idea: Idea, ideaAnalysis: IdeaAnalysis){
+    if (idea.isRequested == IsRequested.COMPLETED) {
+        view.text = formatViews(ideaAnalysis!!.refViewCount)
+        view.setTextColor(ContextCompat.getColor(view.context, R.color.black))
+    } else if (idea.isRequested == IsRequested.REQUESTED){
+        view.text = "분석 진행 중"
+        view.setTextColor(ContextCompat.getColor(view.context, R.color.orange))
+    } else if (idea.isRequested == IsRequested.NOT_REQUESTED) {
+        view.text = "분석 진행 전"
+        view.setTextColor(ContextCompat.getColor(view.context, R.color.gray_b))
+    } else {
+        view.text = "${idea.isRequested}"
+        view.setTextColor(ContextCompat.getColor(view.context, R.color.gray_b))
     }
 }
 

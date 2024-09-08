@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import com.example.youtubesolution.databinding.FragmentCreateIdeaBinding
@@ -59,12 +60,20 @@ class CreateIdeaFragment : Fragment() {
 
     private fun setupClickListners() {
         binding.tvButtonDescription.setOnClickListener {
+            if (binding.etAnswerDescription.text.length > 0) {
             handleDescription()
+            } else {
+                Toast.makeText(requireActivity(), "내용을 입력해주세요",Toast.LENGTH_SHORT).show()
+            }
         }
         setupTextWatcher(binding.etAnswerDescription, binding.tvLengthDescription, 100)
 
         binding.tvButtonKeyword.setOnClickListener {
-            handleKeyword()
+            if (binding.etAnswerKeyword.text.length > 0) {
+                handleKeyword()
+            } else {
+                Toast.makeText(requireActivity(), "내용을 입력해주세요",Toast.LENGTH_SHORT).show()
+            }
         }
         setupTextWatcher(binding.etAnswerKeyword, binding.tvLengthKeyword, 15)
 

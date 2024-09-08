@@ -3,14 +3,14 @@ package com.example.youtubesolution.dataclass
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.youtubesolution.getEnumFromString
 import com.example.youtubesolution.getUserId
 import com.google.firebase.firestore.FirebaseFirestore
 
+private val ideaCollection = "testIdeas"
+private val analysisCollection = "testAnalyses"
 class SharedViewModel : ViewModel() {
     private val db = FirebaseFirestore.getInstance()
-
-//    private val _user = MutableLiveData<User>()
-//    val user: LiveData<User> = _user
 
     private val idealist = mutableListOf<Idea>()
     private val _ideas = MutableLiveData<List<Idea>>(mutableListOf())
@@ -21,32 +21,25 @@ class SharedViewModel : ViewModel() {
     val ideaAnalyses: LiveData<List<IdeaAnalysis>> = _ideaAnalyses
 
     init {
-//        loadRecentUser()
         fetchIdeasFromFirestore()
     }
-
-//    fun addUser(newUser: User) {
-//        _user.value = newUser
-//
-//        db.collection("usersCollection")
-//            .document(newUser.userId)
-//            .set(user)
-//    }
-//
-//    fun updateUser (updatedUser: User) {
-//        _user.value = updatedUser
-//        db.collection("usersCollection")
-//            .document(updatedUser.handle)
-//            .set(user)
-//    }
 
     fun addIdea(idea: Idea) {
         idealist.add(0, idea)
         _ideas.value = idealist
 
-        db.collection("ideasCollection")
+        db.collection(ideaCollection)
             .document(idea.ideaId)
             .set(idea)
+    }
+
+    fun addIdeaAnalysis(ideaAnalysis: IdeaAnalysis) {
+        ideaAnalysislist.add(0, ideaAnalysis)
+        _ideaAnalyses.value = ideaAnalysislist
+
+        db.collection(analysisCollection)
+            .document(ideaAnalysis.ideaId)
+            .set(ideaAnalysis)
     }
 
     fun updateIdea(updatedIdea: Idea?) {
@@ -56,28 +49,11 @@ class SharedViewModel : ViewModel() {
                 idealist[index] = updatedIdea
                 _ideas.value = idealist
 
-                db.collection("ideasCollection")
+                db.collection(ideaCollection)
                     .document(updatedIdea.ideaId)
                     .set(updatedIdea)
             }
         }
-    }
-
-
-    fun getIdeaById(id: String?): Idea {
-        val index = idealist.indexOfFirst { it.ideaId == id }
-        return idealist[index]
-    }
-
-
-
-    fun addIdeaAnalysis(ideaAnalysis: IdeaAnalysis) {
-        ideaAnalysislist.add(0, ideaAnalysis)
-        _ideaAnalyses.value = ideaAnalysislist
-
-        db.collection("ideaAnalysesCollection")
-            .document(ideaAnalysis.ideaId)
-            .set(ideaAnalysis)
     }
 
     fun updateIdeaAnalysis(updatedIdeaAnalysis: IdeaAnalysis?) {
@@ -87,12 +63,18 @@ class SharedViewModel : ViewModel() {
                 ideaAnalysislist[index] = updatedIdeaAnalysis
                 _ideaAnalyses.value = ideaAnalysislist
 
-                db.collection("ideaAnalysesCollection")
+                db.collection(analysisCollection)
                     .document(updatedIdeaAnalysis.ideaId)
                     .set(updatedIdeaAnalysis)
             }
         }
     }
+
+    fun getIdeaById(id: String?): Idea {
+        val index = idealist.indexOfFirst { it.ideaId == id }
+        return idealist[index]
+    }
+
 
     fun getIdeaAnalysisById(id: String?): IdeaAnalysis {
         val index = ideaAnalysislist.indexOfFirst { it.ideaId == id }
@@ -107,41 +89,31 @@ class SharedViewModel : ViewModel() {
         ideaAnalysislist.removeAll { it.ideaId == id }
         _ideaAnalyses.value = ideaAnalysislist
 
-        db.collection("ideasCollection")
+        db.collection(ideaCollection)
             .document(id.toString())
             .delete()
 
-        db.collection("ideaAnalysesCollection")
+        db.collection(analysisCollection)
             .document(id.toString())
             .delete()
     }
 
-//    fun loadRecentUser() {
-//        db.collection("usersCollection")
-//            .whereEqualTo("userId", getUserId())
-//            .get()
-//            .addOnSuccessListener { result ->
-//                for (document in result) {
-//                    val user = document.toObject(User::class.java)
-//                    _user.value = user
-//                }
-//            }
-//    }
     private fun fetchIdeasFromFirestore() {
         val userId = getUserId()
 
-        db.collection("ideasCollection")
+        db.collection(ideaCollection)
             .whereEqualTo("userId", userId)
             .get()
             .addOnSuccessListener { result ->
                 idealist.clear()
                 for (document in result) {
                     val idea = document.toObject(Idea::class.java)
-                    idealist.add(idea)
+                    val updatedIdea = idea.copy(isRequested = getEnumFromString(document.getString("requested").toString(), IsRequested.ERROR))
+                    idealist.add(updatedIdea)
                 }
                 _ideas.value = idealist
             }
-        db.collection("ideaAnalysesCollection")
+        db.collection(analysisCollection)
             .whereEqualTo("userId", userId)
             .get()
             .addOnSuccessListener { result ->

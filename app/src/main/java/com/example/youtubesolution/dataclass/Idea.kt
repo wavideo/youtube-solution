@@ -6,7 +6,8 @@ import kotlinx.parcelize.Parcelize
 enum class IsRequested {
     NOT_REQUESTED,
     REQUESTED,
-    COMPLETED
+    COMPLETED,
+    ERROR
 }
 @Parcelize
 data class Idea(
@@ -15,7 +16,7 @@ data class Idea(
     val description: String = "",
     val keyword: String = "",
     val isShorts : Boolean = false,
-    val isRequested: IsRequested = IsRequested.NOT_REQUESTED
+    val isRequested: IsRequested = IsRequested.COMPLETED
 ): Parcelable
 
 @Parcelize
