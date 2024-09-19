@@ -60,7 +60,7 @@ fun checkIsRequested(view: TextView, idea: Idea, ideaAnalysis: IdeaAnalysis){
         view.setTextColor(ContextCompat.getColor(view.context, R.color.black))
     } else if (idea.isRequested == IsRequested.REQUESTED){
         view.text = "분석 진행 중"
-        view.setTextColor(ContextCompat.getColor(view.context, R.color.orange))
+        view.setTextColor(ContextCompat.getColor(view.context, R.color.gray_a))
     } else if (idea.isRequested == IsRequested.NOT_REQUESTED) {
         view.text = "분석 진행 전"
         view.setTextColor(ContextCompat.getColor(view.context, R.color.gray_b))

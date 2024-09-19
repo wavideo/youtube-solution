@@ -336,7 +336,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:padding="8dp"
-                android:text="분석 신청하기"
+                android:text="소재 등록하기"
                 android:textColor="@color/red"
                 android:textSize="16dp"
                 android:textStyle="bold"
