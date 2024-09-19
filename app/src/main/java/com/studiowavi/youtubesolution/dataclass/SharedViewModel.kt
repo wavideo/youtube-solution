@@ -1,10 +1,10 @@
-package com.example.youtubesolution.dataclass
+package com.studiowavi.youtubesolution.dataclass
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.youtubesolution.getEnumFromString
-import com.example.youtubesolution.getUserId
+import com.studiowavi.youtubesolution.getEnumFromString
+import com.studiowavi.youtubesolution.getUserId
 import com.google.firebase.firestore.FirebaseFirestore
 
 private val ideaCollection = "testIdeas"
@@ -108,7 +108,10 @@ class SharedViewModel : ViewModel() {
                 idealist.clear()
                 for (document in result) {
                     val idea = document.toObject(Idea::class.java)
-                    val updatedIdea = idea.copy(isRequested = getEnumFromString(document.getString("requested").toString(), IsRequested.ERROR))
+                    val updatedIdea = idea.copy(isRequested = getEnumFromString(document.getString("requested").toString(),
+                        IsRequested.ERROR
+                    )
+                    )
                     idealist.add(updatedIdea)
                 }
                 _ideas.value = idealist

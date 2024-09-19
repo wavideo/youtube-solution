@@ -1,4 +1,4 @@
-package com.example.youtubesolution
+package com.studiowavi.youtubesolution
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

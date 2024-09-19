@@ -1,4 +1,4 @@
-package com.example.youtubesolution
+package com.studiowavi.youtubesolution
 
 import org.junit.Test
 

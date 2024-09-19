@@ -1,4 +1,4 @@
-package com.example.youtubesolution.SiginInFragment
+package com.studiowavi.youtubesolution.SiginInFragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
-import com.example.youtubesolution.R
-import com.example.youtubesolution.databinding.FragmentTermsBinding
+import com.studiowavi.youtubesolution.R
+import com.studiowavi.youtubesolution.databinding.FragmentTermsBinding
 
 class TermsFragment : Fragment() {
     private val binding by lazy { FragmentTermsBinding.inflate(layoutInflater) }

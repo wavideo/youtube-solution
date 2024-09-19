@@ -1,4 +1,4 @@
-package com.example.youtubesolution
+package com.studiowavi.youtubesolution
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,14 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
-import com.example.youtubesolution.IdeaHomeFragment.IdeaHomeFragment
-import com.example.youtubesolution.databinding.FragmentIdeaDetailBinding
-import com.example.youtubesolution.databinding.FragmentIdeaDetailStubRequestBinding
-import com.example.youtubesolution.databinding.FragmentIdeaDetailStubResultBinding
-import com.example.youtubesolution.dataclass.Idea
-import com.example.youtubesolution.dataclass.IdeaAnalysis
-import com.example.youtubesolution.dataclass.SharedViewModel
-import com.example.youtubesolution.dataclass.IsRequested
+import com.studiowavi.youtubesolution.IdeaHomeFragment.IdeaHomeFragment
+import com.studiowavi.youtubesolution.databinding.FragmentIdeaDetailBinding
+import com.studiowavi.youtubesolution.databinding.FragmentIdeaDetailStubRequestBinding
+import com.studiowavi.youtubesolution.databinding.FragmentIdeaDetailStubResultBinding
+import com.studiowavi.youtubesolution.dataclass.Idea
+import com.studiowavi.youtubesolution.dataclass.IdeaAnalysis
+import com.studiowavi.youtubesolution.dataclass.SharedViewModel
+import com.studiowavi.youtubesolution.dataclass.IsRequested
 
 private const val ARG_ID = "id"
 
@@ -199,7 +199,9 @@ class IdeaDetailFragment : Fragment() {
     private fun setupClickListenerEditIdeaAnalysis() {
         binding.tvButtonEditIdeaAnalysis.setOnClickListener {
             parentFragmentManager.commit {
-                replace(R.id.fragment_container_main_activity, EditIdeaAnalysisFragment.newInstance(id.toString()))
+                replace(R.id.fragment_container_main_activity,
+                    EditIdeaAnalysisFragment.newInstance(id.toString())
+                )
                 setReorderingAllowed(true)
                 addToBackStack("")
             }
@@ -213,7 +215,7 @@ class IdeaDetailFragment : Fragment() {
         viewModel.updateIdea(updatedIdea)
 
         parentFragmentManager.commit {
-            replace(R.id.fragment_container_main_activity, IdeaDetailFragment.newInstance(id.toString()))
+            replace(R.id.fragment_container_main_activity, newInstance(id.toString()))
             setReorderingAllowed(true)
         }
     }

@@ -1,4 +1,4 @@
-package com.example.youtubesolution.SiginInFragment
+package com.studiowavi.youtubesolution.SiginInFragment
 
 import android.os.Bundle
 import android.util.Log
@@ -9,9 +9,9 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
-import com.example.youtubesolution.IdeaHomeFragment.IdeaHomeFragment
-import com.example.youtubesolution.R
-import com.example.youtubesolution.databinding.FragmentSignInBinding
+import com.studiowavi.youtubesolution.IdeaHomeFragment.IdeaHomeFragment
+import com.studiowavi.youtubesolution.R
+import com.studiowavi.youtubesolution.databinding.FragmentSignInBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions

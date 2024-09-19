@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.youtubesolution"
+    namespace = "com.studiowavi.youtubesolution"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.youtubesolution"
+        applicationId = "com.studiowavi.youtubesolution"
         minSdk = 31
         targetSdk = 34
         versionCode = 1

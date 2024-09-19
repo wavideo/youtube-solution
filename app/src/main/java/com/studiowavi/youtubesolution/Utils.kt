@@ -1,11 +1,11 @@
-package com.example.youtubesolution
+package com.studiowavi.youtubesolution
 
 import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import com.example.youtubesolution.dataclass.Idea
-import com.example.youtubesolution.dataclass.IdeaAnalysis
-import com.example.youtubesolution.dataclass.IsRequested
+import com.studiowavi.youtubesolution.dataclass.Idea
+import com.studiowavi.youtubesolution.dataclass.IdeaAnalysis
+import com.studiowavi.youtubesolution.dataclass.IsRequested
 import com.google.firebase.auth.FirebaseAuth
 //import com.kiyohara.komoran.Komoran
 

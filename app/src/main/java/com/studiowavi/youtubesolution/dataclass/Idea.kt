@@ -1,4 +1,4 @@
-package com.example.youtubesolution.dataclass
+package com.studiowavi.youtubesolution.dataclass
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

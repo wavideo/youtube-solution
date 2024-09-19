@@ -1,4 +1,4 @@
-package com.example.youtubesolution.IdeaHomeFragment
+package com.studiowavi.youtubesolution.IdeaHomeFragment
 
 import IdeaAdapter
 import android.os.Bundle
@@ -10,12 +10,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.youtubesolution.CreateIdeaFragment
-import com.example.youtubesolution.IdeaDetailFragment
-import com.example.youtubesolution.R
-import com.example.youtubesolution.databinding.FragmentIdeaHomeBinding
-import com.example.youtubesolution.dataclass.Idea
-import com.example.youtubesolution.dataclass.SharedViewModel
+import com.studiowavi.youtubesolution.CreateIdeaFragment
+import com.studiowavi.youtubesolution.IdeaDetailFragment
+import com.studiowavi.youtubesolution.R
+import com.studiowavi.youtubesolution.databinding.FragmentIdeaHomeBinding
+import com.studiowavi.youtubesolution.dataclass.Idea
+import com.studiowavi.youtubesolution.dataclass.SharedViewModel
 
 class IdeaHomeFragment : Fragment() {
     private val viewModel by activityViewModels<SharedViewModel>()

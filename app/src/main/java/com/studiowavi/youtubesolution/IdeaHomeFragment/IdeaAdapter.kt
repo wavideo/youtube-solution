@@ -4,13 +4,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.youtubesolution.R
-import com.example.youtubesolution.checkIsRequested
-import com.example.youtubesolution.databinding.ItemIdeaBinding
-import com.example.youtubesolution.dataclass.Idea
-import com.example.youtubesolution.dataclass.IsRequested
-import com.example.youtubesolution.dataclass.SharedViewModel
-import com.example.youtubesolution.formatViews
+import com.studiowavi.youtubesolution.R
+import com.studiowavi.youtubesolution.checkIsRequested
+import com.studiowavi.youtubesolution.databinding.ItemIdeaBinding
+import com.studiowavi.youtubesolution.dataclass.Idea
+import com.studiowavi.youtubesolution.dataclass.IsRequested
+import com.studiowavi.youtubesolution.dataclass.SharedViewModel
+import com.studiowavi.youtubesolution.formatViews
 
 class IdeaAdapter(var items:MutableList<Idea>) : RecyclerView.Adapter<IdeaAdapter.Holder>(){
     inner class Holder(val binding : ItemIdeaBinding) : RecyclerView.ViewHolder (binding.root) {

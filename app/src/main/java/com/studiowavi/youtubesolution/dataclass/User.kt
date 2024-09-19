@@ -1,7 +1,7 @@
-package com.example.youtubesolution.dataclass
+package com.studiowavi.youtubesolution.dataclass
 
 import android.os.Parcelable
-import com.example.youtubesolution.formatViews
+import com.studiowavi.youtubesolution.formatViews
 import kotlinx.parcelize.Parcelize
 import java.util.Date
 

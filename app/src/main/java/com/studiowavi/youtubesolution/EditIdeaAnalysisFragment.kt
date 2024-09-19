@@ -1,4 +1,4 @@
-package com.example.youtubesolution
+package com.studiowavi.youtubesolution
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
-import com.example.youtubesolution.databinding.FragmentEditIdeaAnalysisBinding
-import com.example.youtubesolution.dataclass.SharedViewModel
-import com.example.youtubesolution.dataclass.IsRequested
+import com.studiowavi.youtubesolution.databinding.FragmentEditIdeaAnalysisBinding
+import com.studiowavi.youtubesolution.dataclass.SharedViewModel
+import com.studiowavi.youtubesolution.dataclass.IsRequested
 
 private const val ARG_ID = "id"
 

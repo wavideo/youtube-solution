@@ -1,4 +1,4 @@
-package com.example.youtubesolution
+package com.studiowavi.youtubesolution
 
 import android.graphics.Typeface
 import android.os.Bundle
@@ -16,11 +16,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
-import com.example.youtubesolution.databinding.FragmentCreateIdeaBinding
-import com.example.youtubesolution.dataclass.Idea
-import com.example.youtubesolution.dataclass.IdeaAnalysis
-import com.example.youtubesolution.dataclass.SharedViewModel
-import com.example.youtubesolution.dataclass.IsRequested
+import com.studiowavi.youtubesolution.databinding.FragmentCreateIdeaBinding
+import com.studiowavi.youtubesolution.dataclass.Idea
+import com.studiowavi.youtubesolution.dataclass.IdeaAnalysis
+import com.studiowavi.youtubesolution.dataclass.SharedViewModel
+import com.studiowavi.youtubesolution.dataclass.IsRequested
 import java.util.UUID
 
 class CreateIdeaFragment : Fragment() {

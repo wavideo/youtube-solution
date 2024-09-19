@@ -41,6 +41,43 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:388119307495:android:c754cc708974321afd6e42",
+        "android_client_info": {
+          "package_name": "com.studiowavi.youtubesolution"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "388119307495-p5plla9bb7rnnsebifghaksarcstgt2c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.studiowavi.youtubesolution",
+            "certificate_hash": "3ec7473ea532b657315a4c8530d09c212ec1a24f"
+          }
+        },
+        {
+          "client_id": "388119307495-d0ufua75sbg63cdebb1ogancto60c5as.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwQFacNTRTYn3GbFIUIZW0alZ8RMttjnY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "388119307495-d0ufua75sbg63cdebb1ogancto60c5as.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"
