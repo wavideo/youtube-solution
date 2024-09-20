@@ -98,7 +98,7 @@ class SharedViewModel : ViewModel() {
             .delete()
     }
 
-    private fun fetchIdeasFromFirestore() {
+    fun fetchIdeasFromFirestore() {
         val userId = getUserId()
 
         db.collection(ideaCollection)

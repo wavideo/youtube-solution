@@ -12,6 +12,7 @@ import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.studiowavi.youtubesolution.CreateIdeaFragment
 import com.studiowavi.youtubesolution.IdeaDetailFragment
@@ -20,6 +21,7 @@ import com.studiowavi.youtubesolution.SiginInFragment.SignInFragment
 import com.studiowavi.youtubesolution.databinding.FragmentIdeaHomeBinding
 import com.studiowavi.youtubesolution.dataclass.Idea
 import com.studiowavi.youtubesolution.dataclass.SharedViewModel
+import org.checkerframework.common.returnsreceiver.qual.This
 
 class IdeaHomeFragment : Fragment() {
     private val viewModel by activityViewModels<SharedViewModel>()
@@ -32,6 +34,7 @@ class IdeaHomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        viewModel.fetchIdeasFromFirestore()
         return binding.root
     }
 
