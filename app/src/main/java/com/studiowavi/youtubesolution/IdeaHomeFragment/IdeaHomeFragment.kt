@@ -10,9 +10,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
 import com.studiowavi.youtubesolution.CreateIdeaFragment
 import com.studiowavi.youtubesolution.IdeaDetailFragment
 import com.studiowavi.youtubesolution.R
+import com.studiowavi.youtubesolution.SiginInFragment.SignInFragment
 import com.studiowavi.youtubesolution.databinding.FragmentIdeaHomeBinding
 import com.studiowavi.youtubesolution.dataclass.Idea
 import com.studiowavi.youtubesolution.dataclass.SharedViewModel
@@ -41,6 +45,23 @@ class IdeaHomeFragment : Fragment() {
     private fun setupClickListners(){
         binding.clButtonCreate.setOnClickListener {
             openCreateIdeaFragment()
+        }
+
+        binding.tvButtonSignOut.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+            val googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
+
+            googleSignInClient.signOut().addOnCompleteListener(requireActivity()) {
+                // SignInFragment로 이동
+                parentFragmentManager.commit {
+                    replace(R.id.fragment_container_main_activity, SignInFragment())
+                }
+            }
         }
     }
 

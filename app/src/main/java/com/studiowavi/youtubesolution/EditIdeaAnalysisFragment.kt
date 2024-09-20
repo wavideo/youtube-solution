@@ -70,25 +70,6 @@ class EditIdeaAnalysisFragment : Fragment() {
     }
 
     private fun setupClickListners() {
-        fun edit() {
-            val updatedIdeaAnalysis = ideaAnalysis.copy(
-                refTitle = binding.etYoutubeTitle.text.toString(),
-                refViewCount = binding.etYoutubeViewcount.text.toString().toInt(),
-                howtoClick = binding.etHowtoClick.text.toString(),
-                howtoWatching = binding.etHowtoWatching.text.toString()
-            )
-            viewModel.updateIdeaAnalysis(updatedIdeaAnalysis)
-            viewModel.updateIdea(idea.copy(isRequested = IsRequested.COMPLETED))
-
-            parentFragmentManager.commit {
-                replace(
-                    R.id.fragment_container_main_activity,
-                    IdeaDetailFragment.newInstance(id.toString())
-                )
-                setReorderingAllowed(true)
-                parentFragmentManager.popBackStack()
-            }
-        }
 
         binding.clButtonComplete.setOnClickListener {
                 if (binding.etYoutubeTitle.text.length < 0) {
@@ -102,6 +83,29 @@ class EditIdeaAnalysisFragment : Fragment() {
                 }
         }
 
+        binding.ivIconClose.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
+    }
+
+    private fun edit() {
+        val updatedIdeaAnalysis = ideaAnalysis.copy(
+            refTitle = binding.etYoutubeTitle.text.toString(),
+            refViewCount = binding.etYoutubeViewcount.text.toString().toInt(),
+            howtoClick = binding.etHowtoClick.text.toString(),
+            howtoWatching = binding.etHowtoWatching.text.toString()
+        )
+        viewModel.updateIdeaAnalysis(updatedIdeaAnalysis)
+        viewModel.updateIdea(idea.copy(isRequested = IsRequested.COMPLETED))
+
+        parentFragmentManager.commit {
+            replace(
+                R.id.fragment_container_main_activity,
+                IdeaDetailFragment.newInstance(id.toString())
+            )
+            setReorderingAllowed(true)
+            parentFragmentManager.popBackStack()
+        }
     }
 
     companion object {
